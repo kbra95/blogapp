@@ -7,7 +7,7 @@ import lombok.Getter;
 public class PostCreateUpdateDTO {
 
     private String title;
-    private String text;
+    private String postText;
     private String summary;
 
     private Tag tag;
