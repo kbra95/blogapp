@@ -1,5 +1,7 @@
 package com.bloggy.blogapp.enums;
 
+import java.util.stream.Stream;
+
 public enum Tag {
 
     TECHNOLOGY("T"),
@@ -17,5 +19,12 @@ public enum Tag {
 
     public String getCode() {
         return code;
+    }
+
+    public static Tag getByCode(String code) {
+        return Stream.of(Tag.values())
+                .filter(paybackActionStatus -> paybackActionStatus.getCode().equals(code))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

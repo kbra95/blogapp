@@ -1,16 +1,19 @@
 package com.bloggy.blogapp.service;
 
-import com.bloggy.blogapp.controller.dto.PostCreateUpdateDTO;
+import com.bloggy.blogapp.controller.dto.PostCreateDTO;
 import com.bloggy.blogapp.controller.dto.PostDTO;
-import com.bloggy.blogapp.service.model.PostModel;
-import org.springframework.data.annotation.CreatedDate;
+import com.bloggy.blogapp.controller.dto.PostUpdateDTO;
 
 import java.util.List;
 
 public interface PostService {
 
-    void createPost(PostCreateUpdateDTO postCreateUpdateDTO);
+    void createPost(PostCreateDTO postCreateDTO);
+
+    PostDTO updatePost(int id, PostUpdateDTO postUpdateDTO);
 
     List<PostDTO> getAllBlogPost();
+
+    List<PostDTO> getAllBlogPostByTag(String tag);
 
 }
