@@ -9,7 +9,6 @@ import com.bloggy.blogapp.repository.PostRepository;
 import com.bloggy.blogapp.repository.TagRepository;
 import com.bloggy.blogapp.repository.entity.Post;
 import com.bloggy.blogapp.repository.entity.Tag;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +26,6 @@ import static com.bloggy.blogapp.controller.dto.UpdateTagRequest.*;
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
-    private static final ObjectMapper objectMapper = new ObjectMapper();
     private final PostRepository postRepository;
     private final TagRepository tagRepository;
     private final PostMapper postMapper;
@@ -93,7 +91,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDTO> getAllBlogPostByTag(String tag) {
-        //List<Post> allByTag = postRepository.findAllByTag(Tag.getByCode(tag));
-        return null; // postMapper.toPostDTOList(allByTag);
+        List<Post> allByTag = postRepository.findAllByTags_TagName(tag);
+        return postMapper.toPostDTOList(allByTag);
     }
 }
