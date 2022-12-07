@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(exclude = "tags")
+@EqualsAndHashCode
 @Builder
 @ToString
 @EntityListeners(AuditingEntityListener.class)
@@ -28,7 +28,7 @@ public class Post {
     private String summary;
     private String postText;
 
-    @ManyToMany
+    @ManyToMany(cascade  = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "post_tag",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))

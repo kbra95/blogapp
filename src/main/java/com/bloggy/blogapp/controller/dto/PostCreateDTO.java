@@ -1,10 +1,9 @@
 package com.bloggy.blogapp.controller.dto;
 
-import com.bloggy.blogapp.enums.Tag;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 
-import java.util.List;
+import java.util.Set;
 
 @Getter
 public class PostCreateDTO {
@@ -16,5 +15,5 @@ public class PostCreateDTO {
     @NotEmpty(message = "Please provide a summary")
     private String summary;
 
-    private List<String> tag;
+    private Set<String> tags;
 }
