@@ -4,10 +4,9 @@ import com.bloggy.blogapp.enums.Tag;
 import lombok.Getter;
 
 @Getter
-public class PostCreateUpdateDTO {
-
+public class PostUpdateDTO {
     private String title;
-    private String text;
+    private String postText;
     private String summary;
 
     private Tag tag;

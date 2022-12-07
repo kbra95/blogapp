@@ -1,32 +1,34 @@
 package com.bloggy.blogapp.repository.entity;
 
 import com.bloggy.blogapp.enums.Tag;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import java.time.OffsetDateTime;
-import java.util.List;
+import java.util.Date;
 
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
+@Builder
 @ToString
+@EntityListeners(AuditingEntityListener.class)
 public class Post {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String title;
     private String summary;
     private String postText;
     private Tag tag;
     @CreatedDate
-    private OffsetDateTime createdDate;
+    private Date createdDate;
     @LastModifiedDate
-    private OffsetDateTime updatedDate;
+    private Date updatedDate;
 
 }
