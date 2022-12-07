@@ -6,6 +6,7 @@ import com.bloggy.blogapp.controller.dto.PostUpdateDTO;
 import com.bloggy.blogapp.controller.dto.UpdateTagRequest;
 import com.bloggy.blogapp.mapper.PostMapper;
 import com.bloggy.blogapp.repository.PostRepository;
+import com.bloggy.blogapp.repository.TagRepository;
 import com.bloggy.blogapp.repository.entity.Post;
 import com.bloggy.blogapp.repository.entity.Tag;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,6 +20,8 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
+import static com.bloggy.blogapp.controller.dto.UpdateTagRequest.*;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -26,6 +29,7 @@ public class PostServiceImpl implements PostService {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private final PostRepository postRepository;
+    private final TagRepository tagRepository;
     private final PostMapper postMapper;
 
     @Override
@@ -33,8 +37,11 @@ public class PostServiceImpl implements PostService {
         Post post = postMapper.toPostEntity(postCreateDTO);
         Set<Tag> tagSet = new HashSet<>();
         postCreateDTO.getTags().forEach(tagName -> {
-            Tag tag = Tag.builder().tagName(tagName).build();
-            tagSet.add(tag);
+            tagRepository.findByTagName(tagName).ifPresentOrElse(tagSet::add, () -> {
+                Tag tag = Tag.builder().tagName(tagName).build();
+                tagSet.add(tag);
+            });
+
         });
         post.setTags(tagSet);
         postRepository.save(post);
@@ -61,9 +68,12 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDTO updatePostTag(int id, UpdateTagRequest updateRequest) {
         Post postById = getPostById(id);
-        if (updateRequest.getOperation().equals(UpdateTagRequest.Operation.ADD)) {
-            postById.getTags().add(Tag.builder().tagName(updateRequest.getTagName()).build());
-        } else if (updateRequest.getOperation().equals(UpdateTagRequest.Operation.REMOVE)) {
+        if (updateRequest.getOperation().equals(Operation.ADD)) {
+
+            tagRepository.findByTagName(updateRequest.getTagName()).ifPresentOrElse(tag -> postById.getTags().add(tag),
+                    () -> postById.getTags().add(Tag.builder().tagName(updateRequest.getTagName()).build()));
+
+        } else if (updateRequest.getOperation().equals(Operation.REMOVE)) {
             postById.getTags()
                     .stream()
                     .filter(tag -> tag.getTagName().equals(updateRequest.getTagName()))
