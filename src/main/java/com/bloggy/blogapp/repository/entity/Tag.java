@@ -22,5 +22,6 @@ public class Tag {
     private String tagName;
 
     @ManyToMany(mappedBy = "tags")
+    @Builder.Default
     private Set<Post> posts = new HashSet<>();
 }

@@ -1,11 +1,14 @@
 package com.bloggy.blogapp.controller.dto;
 
 import jakarta.validation.constraints.NotEmpty;
+import lombok.Builder;
 import lombok.Getter;
 
+import java.util.HashSet;
 import java.util.Set;
 
 @Getter
+@Builder
 public class PostCreateDTO {
 
     @NotEmpty(message = "Please provide a title")
@@ -15,5 +18,6 @@ public class PostCreateDTO {
     @NotEmpty(message = "Please provide a summary")
     private String summary;
 
-    private Set<String> tags;
+    @Builder.Default
+    private Set<String> tags = new HashSet<>();
 }

@@ -15,7 +15,7 @@ import java.util.Set;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode
+@EqualsAndHashCode(exclude = "tags")
 @Builder
 @ToString
 @EntityListeners(AuditingEntityListener.class)
@@ -32,6 +32,7 @@ public class Post {
     @JoinTable(name = "post_tag",
             joinColumns = @JoinColumn(name = "post_id"),
             inverseJoinColumns = @JoinColumn(name = "tag_id"))
+    @Builder.Default
     private Set<Tag> tags = new HashSet<>();
     @CreatedDate
     private Date createdDate;
