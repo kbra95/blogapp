@@ -1,10 +1,9 @@
 package com.bloggy.blogapp.controller.dto;
 
-import com.bloggy.blogapp.enums.Tag;
 import lombok.*;
 
-import java.time.OffsetDateTime;
 import java.util.Date;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -17,5 +16,5 @@ public class PostDTO {
     private String postText;
     private Date createdDate;
     private Date updatedDate;
-    private Tag tag;
+    private Set<String> tags;
 }

@@ -1,5 +1,9 @@
-package com.bloggy.blogapp.controller.dto;
+package com.bloggy.blogapp.controller;
 
+import com.bloggy.blogapp.controller.dto.PostCreateDTO;
+import com.bloggy.blogapp.controller.dto.PostDTO;
+import com.bloggy.blogapp.controller.dto.PostUpdateDTO;
+import com.bloggy.blogapp.controller.dto.UpdateTagRequest;
 import com.bloggy.blogapp.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,5 +41,12 @@ public class PostController {
     @GetMapping("/byTag")
     public ResponseEntity<List<PostDTO>> getPostsByTag(@RequestParam String tag) {
         return new ResponseEntity<>(postService.getAllBlogPostByTag(tag), HttpStatus.OK);
+    }
+
+
+    @PatchMapping(path = "/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<PostDTO> updatePostTag(@PathVariable int id,@RequestBody UpdateTagRequest patch) {
+        PostDTO updatedPost = postService.updatePostTag(id, patch);
+        return new ResponseEntity<>(updatedPost, HttpStatus.CREATED);
     }
 }
