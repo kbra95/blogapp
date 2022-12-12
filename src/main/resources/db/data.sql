@@ -1,9 +1,8 @@
 INSERT INTO post(id,title,
                  summary,
                  post_text,
-                 tag,
                  created_date,
-                 updated_date) VALUES (1,'Post 1', 'Post 1 Summary' , 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. ' ,'T', NOW(), NOW());
+                 updated_date) VALUES (1,'Post 1', 'Post 1 Summary' , 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam. ' , NOW(), NOW());
 
 
 INSERT INTO post(id,title,
