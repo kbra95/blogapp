@@ -9,4 +9,6 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post,Integer> {
 
+    List<Post> findAllByTags_TagName(String tag);
+
 }
