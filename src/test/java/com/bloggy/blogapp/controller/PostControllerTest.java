@@ -131,7 +131,7 @@ public class PostControllerTest {
     @Test
     void getPostsByTagTest() throws Exception {
         MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get("/v1/post")
-                .param("tag", "Test Tag")
+                .param("tag", "Test Tag t")
                 .contentType(APPLICATION_JSON)).andReturn();
         List<PostDTO> response = objectMapper.readValue(mvcResult.getResponse().getContentAsByteArray(), new TypeReference<>() {
         });

@@ -60,7 +60,7 @@ public class PostServiceImpl implements PostService {
     private Post getPostById(int id) {
         return postRepository
                 .findById(id)
-                .orElseThrow(() -> new EntityNotFoundException(String.format("Blog post is not found with given id : %x", id)));
+                .orElseThrow(() -> new EntityNotFoundException(String.format("Blog post is not found with given id : %d", id)));
     }
 
     @Override
@@ -68,15 +68,15 @@ public class PostServiceImpl implements PostService {
         Post postById = getPostById(id);
         if (updateRequest.getOperation().equals(Operation.ADD)) {
 
-            tagRepository.findByTagName(updateRequest.getTagName()).ifPresentOrElse(tag -> postById.getTags().add(tag),
-                    () -> postById.getTags().add(Tag.builder().tagName(updateRequest.getTagName()).build()));
+            tagRepository.findByTagName(updateRequest.getTagName()).ifPresentOrElse(postById::addTag,
+                    () -> postById.addTag(Tag.builder().tagName(updateRequest.getTagName()).build()));
 
         } else if (updateRequest.getOperation().equals(Operation.REMOVE)) {
             postById.getTags()
                     .stream()
                     .filter(tag -> tag.getTagName().equals(updateRequest.getTagName()))
                     .findFirst()
-                    .ifPresent(rem -> postById.getTags().remove(rem));
+                    .ifPresent(postById::removeTag);
         }
 
         Post updated = postRepository.save(postById);
