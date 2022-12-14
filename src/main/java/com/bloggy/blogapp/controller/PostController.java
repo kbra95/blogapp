@@ -7,6 +7,7 @@ import com.bloggy.blogapp.controller.dto.UpdateTagRequest;
 import com.bloggy.blogapp.service.PostService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/v1/post")
 @RequiredArgsConstructor
+@Slf4j
 public class PostController {
 
     private final PostService postService;
@@ -24,6 +26,7 @@ public class PostController {
     @PostMapping
     public ResponseEntity<Void> createPost(@Valid @RequestBody PostCreateDTO postCreateDTO) {
         postService.createPost(postCreateDTO);
+        log.info("The Post is saved.");
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
