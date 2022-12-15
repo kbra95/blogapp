@@ -1,11 +1,13 @@
 package com.bloggy.blogapp.mapper;
 
 import com.bloggy.blogapp.controller.dto.*;
-import com.bloggy.blogapp.repository.entity.Post;
 import com.bloggy.blogapp.repository.entity.Role;
 import com.bloggy.blogapp.repository.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
+
+import java.util.List;
+import java.util.Set;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
@@ -21,4 +23,9 @@ public interface UserMapper {
     @Mapping(target = "id", ignore = true)
     @Mapping(target = "users", ignore = true)
     Role toRoleEntity(RoleRequest userRequest);
+
+    List<UserDTO> toUserDTOList(List<User> users);
+    Set<RoleDTO> toRoleDTOSet(Set<Role> roles);
+
+    List<RoleDTO> toRoleDTOList(List<Role> roles);
 }

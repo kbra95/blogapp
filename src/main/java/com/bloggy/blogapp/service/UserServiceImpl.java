@@ -1,5 +1,6 @@
 package com.bloggy.blogapp.service;
 
+import com.bloggy.blogapp.controller.dto.RoleDTO;
 import com.bloggy.blogapp.controller.dto.RoleRequest;
 import com.bloggy.blogapp.controller.dto.UserDTO;
 import com.bloggy.blogapp.controller.dto.UserRequest;
@@ -14,6 +15,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -46,10 +48,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addRoleToUser(String username, String roleName) {
-        log.info("Adding relation for the user: {}", username);
-        Optional<User> user = userRepository.findByUserName(username);
-        Optional<Role> role = roleRepository.findByName(roleName);
+    public void addRoleToUser(int userId, int roleId) {
+        log.info("Adding relation for the user: {}", userId);
+        Optional<User> user = userRepository.findById(userId);
+        Optional<Role> role = roleRepository.findById(roleId);
         user.ifPresent(u -> role.ifPresent(u::addRole));
+    }
+
+    @Override
+    public List<UserDTO> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        return userMapper.toUserDTOList(users);
+    }
+
+    @Override
+    public List<RoleDTO> getAllRoles() {
+        List<Role> roles = roleRepository.findAll();
+        return userMapper.toRoleDTOList(roles);
     }
 }
