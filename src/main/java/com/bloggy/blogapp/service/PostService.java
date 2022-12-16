@@ -3,7 +3,7 @@ package com.bloggy.blogapp.service;
 import com.bloggy.blogapp.controller.dto.PostCreateDTO;
 import com.bloggy.blogapp.controller.dto.PostDTO;
 import com.bloggy.blogapp.controller.dto.PostUpdateDTO;
-import com.bloggy.blogapp.controller.dto.UpdateTagRequest;
+import com.bloggy.blogapp.controller.dto.request.UpdateTagRequest;
 
 import java.util.List;
 

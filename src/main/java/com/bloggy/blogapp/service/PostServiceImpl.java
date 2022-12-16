@@ -3,7 +3,7 @@ package com.bloggy.blogapp.service;
 import com.bloggy.blogapp.controller.dto.PostCreateDTO;
 import com.bloggy.blogapp.controller.dto.PostDTO;
 import com.bloggy.blogapp.controller.dto.PostUpdateDTO;
-import com.bloggy.blogapp.controller.dto.UpdateTagRequest;
+import com.bloggy.blogapp.controller.dto.request.UpdateTagRequest;
 import com.bloggy.blogapp.mapper.PostMapper;
 import com.bloggy.blogapp.repository.PostRepository;
 import com.bloggy.blogapp.repository.TagRepository;
@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import static com.bloggy.blogapp.controller.dto.UpdateTagRequest.*;
+import static com.bloggy.blogapp.controller.dto.request.UpdateTagRequest.*;
 
 @Service
 @Transactional
