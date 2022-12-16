@@ -12,6 +12,7 @@ CREATE TABLE post
     title        VARCHAR(128)             NOT NULL,
     summary      VARCHAR(128),
     post_text    VARCHAR(256)             NOT NULL,
+    created_by    VARCHAR(256),
     created_date TIMESTAMP WITH TIME ZONE NOT NULL,
     updated_date TIMESTAMP WITH TIME ZONE NOT NULL,
     PRIMARY KEY (id)
@@ -35,10 +36,10 @@ CREATE TABLE post_tag
 
 CREATE TABLE users
 (
-    id       serial PRIMARY KEY,
-    name     VARCHAR(128),
-    user_name VARCHAR(128),
-    password VARCHAR(128),
+    id           serial PRIMARY KEY,
+    name         VARCHAR(128),
+    user_name    VARCHAR(128),
+    password     VARCHAR(128),
     created_date TIMESTAMP WITH TIME ZONE NOT NULL,
     updated_date TIMESTAMP WITH TIME ZONE NOT NULL
 );

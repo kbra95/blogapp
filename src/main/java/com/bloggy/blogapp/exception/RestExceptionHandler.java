@@ -31,6 +31,13 @@ public class RestExceptionHandler {
         return buildResponseEntity(apiError);
     }
 
+    @ExceptionHandler(UnauthorizedUserException.class)
+    public ResponseEntity<Object> methodUnauthorizedUserException(UnauthorizedUserException ex) {
+        ApiError apiError = new ApiError(HttpStatus.FORBIDDEN);
+        apiError.setMessage(ex.getMessage());
+        return buildResponseEntity(apiError);
+    }
+
     private ResponseEntity<Object> buildResponseEntity(ApiError apiError) {
         return new ResponseEntity<>(apiError, apiError.getStatus());
     }

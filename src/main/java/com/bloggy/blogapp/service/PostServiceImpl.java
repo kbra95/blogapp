@@ -66,6 +66,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostDTO updatePostTag(int id, UpdateTagRequest updateRequest) {
         Post postById = getPostById(id);
+        postById.validatePermission();
         if (updateRequest.getOperation().equals(Operation.ADD)) {
 
             tagRepository.findByTagName(updateRequest.getTagName()).ifPresentOrElse(postById::addTag,
