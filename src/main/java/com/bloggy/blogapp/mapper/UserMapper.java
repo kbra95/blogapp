@@ -1,6 +1,8 @@
 package com.bloggy.blogapp.mapper;
 
 import com.bloggy.blogapp.controller.dto.*;
+import com.bloggy.blogapp.controller.dto.request.RoleRequest;
+import com.bloggy.blogapp.controller.dto.request.UserRequest;
 import com.bloggy.blogapp.repository.entity.Role;
 import com.bloggy.blogapp.repository.entity.User;
 import org.mapstruct.Mapper;

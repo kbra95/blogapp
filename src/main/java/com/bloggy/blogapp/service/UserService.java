@@ -1,9 +1,9 @@
 package com.bloggy.blogapp.service;
 
 import com.bloggy.blogapp.controller.dto.RoleDTO;
-import com.bloggy.blogapp.controller.dto.RoleRequest;
+import com.bloggy.blogapp.controller.dto.request.RoleRequest;
 import com.bloggy.blogapp.controller.dto.UserDTO;
-import com.bloggy.blogapp.controller.dto.UserRequest;
+import com.bloggy.blogapp.controller.dto.request.UserRequest;
 
 import java.util.List;
 

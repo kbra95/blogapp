@@ -1,4 +1,4 @@
-package com.bloggy.blogapp.controller.dto;
+package com.bloggy.blogapp.controller.dto.request;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
